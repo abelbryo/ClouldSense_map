@@ -1,9 +1,14 @@
- var map;
+var map; // Reference to base google map
 function init(){
+    detectBrowser();  // Different layouts for mobile and desktop
     var mapOptions = {
         center: new google.maps.LatLng(60.18718, 24.81886),
         zoom: 19,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.TERRAIN],
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        }
     };
 
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -11,12 +16,11 @@ function init(){
     var WIDTH = 547; 
     var HEIGHT = 330;
 
-
     var tuasTiles = new google.maps.ImageMapType( {
 
         getTileUrl: function (coord, zoom) {
                         var proj = map.getProjection(); 
-                        var zoomFactor = 1 << zoom; // Math.pow(2, zoom); 
+                        var zoomFactor = 1 << zoom; // 2^zoom
 
                         var top = proj.fromPointToLatLng(
                             new google.maps.Point(coord.x * WIDTH / zoomFactor, coord.y * HEIGHT / zoomFactor));
@@ -28,7 +32,7 @@ function init(){
                                    bottom.lng()+","+
                                    top.lat();
         
-                    // WMS url
+                    /* WMS request url */
                     var url = "http://localhost:8080/geoserver/cite/wms?";
                     url += "SERVICE=WMS";
                     url += "&VERSION=1.1.1";
@@ -48,6 +52,23 @@ function init(){
         tileSize: new google.maps.Size(WIDTH, HEIGHT), 
         isPng: true
     });
-
     map.overlayMapTypes.push(tuasTiles);
+} 
+
+function detectBrowser(){
+    var userAgent = navigator.userAgent;
+    var mapdiv = document.getElementById('map_canvas');
+
+    if(userAgent.indexOf('iPhone') != -1 || userAgent.indexOf('Android') != -1){
+        mapdiv.style.width="100%";
+        mapdiv.style.height="100%";
+    }else{
+        mapdiv.style.width="1200px";
+        mapdiv.style.height="800px";
+    }
+
 }
+
+
+
+
