@@ -4,7 +4,7 @@ function OpacityControl(overlay){
     el.min = 0; 
     el.max = 100; 
     el.value = 100; 
-    el.style.width = '400px'; 
+    el.style.width = '200px'; 
     el.style.margin = '20px';
     el.onchange = this.onChange_.bind(this);
     this.overlay = overlay;
