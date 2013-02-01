@@ -2,4 +2,17 @@
 #map_canvas{
     height: 700px; 
     width: 1200px;
+    margin:0px;
+}
+
+#ext_control{
+    border: 1px solid #ccc; 
+    padding: 2px; 
+    margin: 4px;
+    width: 10%;
+}
+
+#opacity_control{
+    background: #cccddd; 
+    width: 50%;
 }

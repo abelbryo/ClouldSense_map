@@ -50,13 +50,25 @@ function init(){
         zoom: 19,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControlOptions: {
-            mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.TERRAIN, tuasTiles],
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.TERRAIN],
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
         }
     };
 
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     map.overlayMapTypes.push(tuasTiles);
+
+
+    var opacity = new OpacityControl(tuasTiles);
+    map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(opacity.getElement());
+
+
+    // so the transparency bar can go hidden but should be FIXED!
+    map.onmouseout = function() {
+        opacity.getElement().style.visibility = "hidden";
+    };
+
+
 } 
 
 function detectBrowser(){
@@ -70,7 +82,6 @@ function detectBrowser(){
         mapdiv.style.width="1200px";
         mapdiv.style.height="800px";
     }
-
 }
 
 
