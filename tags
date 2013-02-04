@@ -4,6 +4,13 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-initialize	map.js	/^function initialize(){$/;"	f
-initialize.mapOptions.center	map.js	/^        center: new google.maps.LatLng(60.18718, 24.81886),$/;"	p
-map	map.js	/^var map;$/;"	v
+HEIGHT	map.js	/^var HEIGHT = 330;$/;"	v
+OpacityControl	opacitycontrol.js	/^function OpacityControl(overlay){$/;"	c
+OpacityControl.getElement	opacitycontrol.js	/^OpacityControl.prototype.getElement = function () {$/;"	m
+OpacityControl.onChange_	opacitycontrol.js	/^OpacityControl.prototype.onChange_ = function () {$/;"	m
+WIDTH	map.js	/^var WIDTH = 547; $/;"	v
+detectBrowser	map.js	/^function detectBrowser(){$/;"	f
+init	map.js	/^function init(){$/;"	f
+init.mapOptions.center	map.js	/^        center: new google.maps.LatLng(60.18718, 24.81886),$/;"	p
+map	map.js	/^var map; \/\/ Reference to base google map$/;"	v
+map.onmouseout	map.js	/^    map.onmouseout = function() {$/;"	f
