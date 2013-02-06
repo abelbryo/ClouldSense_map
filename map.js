@@ -2,12 +2,24 @@ var map; // Reference to base google map
 
 var WIDTH = 547; 
 var HEIGHT = 330;
+var MAX_ZOOM_LEVEL = 19;
+
+
+var osmMapType = new google.maps.ImageMapType({
+    getTileUrl : function(coord, zoom){
+                    return "http://tile.openstreetmap.org/"+ zoom + "/" + coord.x + "/" + coord.y + ".png"; 
+                 }, 
+    tileSize : new google.maps.Size(256, 256),
+    isPng : true, 
+    alt : "OpenStreetMap", 
+    name : "OSM", 
+    maxZoom : MAX_ZOOM_LEVEL 
+});
 
 /**
- * The raster tiles from Geoserver. It is made global to make it
- * easy to debug from browser.
+ * The raster tiles from Geoserver.
  * This is a WMS service and the request should comply with WMS standards
- * as shown in the url below.
+ * as shown in the tile url below.
  */
 var tuasTiles = new google.maps.ImageMapType( {
 
@@ -45,7 +57,7 @@ var tuasTiles = new google.maps.ImageMapType( {
         tileSize: new google.maps.Size(WIDTH, HEIGHT), 
         isPng: true,
         name: "TUAS Talo",
-        opacity: 0.8
+        maxZoom : MAX_ZOOM_LEVEL
 
     });
 
@@ -54,14 +66,18 @@ function init(){
     var mapOptions = {
         center: new google.maps.LatLng(60.18718, 24.81886),
         zoom: 19,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeId: 'roadmap',
         mapTypeControlOptions: {
-            mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.TERRAIN],
+            mapTypeIds: [ google.maps.MapTypeId.ROADMAP, 
+                          google.maps.MapTypeId.SATELLITE,
+                          google.maps.MapTypeId.TERRAIN, 
+                          'OSM' ],
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
         }
     };
 
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map.mapTypes.set('OSM', osmMapType);
     map.overlayMapTypes.push(tuasTiles);
 
     var opacity = new OpacityControl(tuasTiles);
