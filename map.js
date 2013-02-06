@@ -2,7 +2,8 @@ var map; // Reference to base google map
 
 var WIDTH = 547; 
 var HEIGHT = 330;
-var MAX_ZOOM_LEVEL = 19;
+var MAX_ZOOM_LEVEL = 20;
+var MIN_ZOOM_LEVEL = 17;
 
 
 var osmMapType = new google.maps.ImageMapType({
@@ -13,7 +14,8 @@ var osmMapType = new google.maps.ImageMapType({
     isPng : true, 
     alt : "OpenStreetMap", 
     name : "OSM", 
-    maxZoom : MAX_ZOOM_LEVEL 
+    maxZoom : MAX_ZOOM_LEVEL, 
+    minZoom : MIN_ZOOM_LEVEL
 });
 
 /**
@@ -57,7 +59,8 @@ var tuasTiles = new google.maps.ImageMapType( {
         tileSize: new google.maps.Size(WIDTH, HEIGHT), 
         isPng: true,
         name: "TUAS Talo",
-        maxZoom : MAX_ZOOM_LEVEL
+        maxZoom : MAX_ZOOM_LEVEL,
+        minZoom : MIN_ZOOM_LEVEL
 
     });
 
