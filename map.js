@@ -3,6 +3,12 @@ var map; // Reference to base google map
 var WIDTH = 547; 
 var HEIGHT = 330;
 
+/**
+ * The raster tiles from Geoserver. It is made global to make it
+ * easy to debug from browser.
+ * This is a WMS service and the request should comply with WMS standards
+ * as shown in the url below.
+ */
 var tuasTiles = new google.maps.ImageMapType( {
 
     getTileUrl: function (coord, zoom) {
@@ -58,19 +64,13 @@ function init(){
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     map.overlayMapTypes.push(tuasTiles);
 
-
     var opacity = new OpacityControl(tuasTiles);
     map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(opacity.getElement());
-
-
-    // so the transparency bar can go hidden but should be FIXED!
-    map.onmouseout = function() {
-        opacity.getElement().style.visibility = "hidden";
-    };
-
-
 } 
 
+/**
+ * We will have different layouts based on device i.e. phone vs desktop. 
+ */
 function detectBrowser(){
     var userAgent = navigator.userAgent;
     var mapdiv = document.getElementById('map_canvas');
@@ -83,7 +83,4 @@ function detectBrowser(){
         mapdiv.style.height="800px";
     }
 }
-
-
-
 
