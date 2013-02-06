@@ -85,7 +85,25 @@ function init(){
 
     var opacity = new OpacityControl(tuasTiles);
     map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(opacity.getElement());
+    getLatLon();
 } 
+
+
+
+/**
+ * Displays the latitude and longitude upon right click on the map.
+ * This is useful to identify the location of the rooms. And shouldn't
+ * be part of the production code.
+ */
+
+function getLatLon(){
+   var info = document.getElementById('info'); 
+   google.maps.event.addListener(map, "rightclick", function(event){
+       var lat = event.latLng.lat();
+       var lng = event.latLng.lng();
+       info.innerHTML = " ( Lat, Lon ) = " +  lat + ", " + lng;
+   });
+}
 
 /**
  * We will have different layouts based on device i.e. phone vs desktop. 
