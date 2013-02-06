@@ -68,6 +68,7 @@ function init(){
     detectBrowser();  // Different layouts for mobile and desktop
     var mapOptions = {
         center: new google.maps.LatLng(60.18718, 24.81886),
+        draggableCursor : 'crosshair',
         zoom: 19,
         mapTypeId: 'roadmap',
         mapTypeControlOptions: {
