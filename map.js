@@ -1,8 +1,8 @@
 var map; // Reference to base google map
 
-var WIDTH = 547; 
+var WIDTH = 578; 
 var HEIGHT = 330;
-var MAX_ZOOM_LEVEL = 20;
+var MAX_ZOOM_LEVEL = 21;
 var MIN_ZOOM_LEVEL = 17;
 
 
@@ -44,7 +44,7 @@ var tuasTiles = new google.maps.ImageMapType( {
             url += "SERVICE=WMS";
             url += "&VERSION=1.1.1";
             url += "&REQUEST=GetMap";
-            url += "&LAYERS=" + "cite:tuas_pyramid";
+            url += "&LAYERS=" + "cite:2kr_pyramid";
             url += "&FORMAT=image/png";
             url += "&BGCOLOR=0xFFFFFF";
             url += "&TRANSPARENT=TRUE";
